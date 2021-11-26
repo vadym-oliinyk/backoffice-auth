@@ -1,14 +1,12 @@
-import React, { FormEvent, useEffect, useState } from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import React, { FormEvent, useState } from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 import { Link } from 'react-router-dom';
 
 import { getUser } from '../../services/getUser';
@@ -30,7 +28,7 @@ function Copyright() {
 export default function SignIn({ onSignIn }: any) {
   const [login, setLogin] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const classes = useStyles();
+  // const classes = useStyles();
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -51,14 +49,14 @@ export default function SignIn({ onSignIn }: any) {
 
   return (
     <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
+      <div>
+        <Avatar>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form onSubmit={onSubmit} className={classes.form} noValidate>
+        <form onSubmit={onSubmit} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -78,7 +76,6 @@ export default function SignIn({ onSignIn }: any) {
             variant="contained"
             color="primary"
             disabled={isLoading}
-            className={classes.submit}
           >
             Sign In
           </Button>
