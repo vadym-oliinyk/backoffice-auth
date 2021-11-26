@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -8,9 +8,11 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
+
+import { getUser } from '../../services/getUser';
+import { useStyles } from './styles';
 
 function Copyright() {
   return (
@@ -25,33 +27,27 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
-  '@global': {
-    a: {
-      textDecoration: 'none',
-    },
-  },
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%',
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
 export default function SignIn({ onSignIn }: any) {
+  const [login, setLogin] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const classes = useStyles();
+
+  async function onSubmit(e: FormEvent) {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const user = await getUser(login);
+      if (onSignIn) {
+        onSignIn(user);
+      }
+    } catch (error) {
+      // TODO: alerts from UI-kit
+      console.warn('Error on login', error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -62,45 +58,27 @@ export default function SignIn({ onSignIn }: any) {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          className={classes.form}
-          noValidate
-        >
+        <form onSubmit={onSubmit} className={classes.form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
             id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            // eslint-disable-next-line jsx-a11y/no-autofocus
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            label="Login"
+            name="login"
+            value={login}
+            onChange={({ target: { value } }) => {
+              setLogin(value);
+            }}
           />
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
+            disabled={isLoading}
             className={classes.submit}
-            onClick={onSignIn}
           >
             Sign In
           </Button>
