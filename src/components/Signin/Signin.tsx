@@ -1,6 +1,4 @@
 import React, { FormEvent, useState } from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -10,7 +8,7 @@ import Container from '@mui/material/Container';
 import { Link } from 'react-router-dom';
 
 import { getUser } from '../../services/getUser';
-import { useStyles } from './styles';
+import { Paper, Avatar, Form, Submit } from './styles';
 
 function Copyright() {
   return (
@@ -49,14 +47,14 @@ export default function SignIn({ onSignIn }: any) {
 
   return (
     <Container component="main" maxWidth="xs">
-      <div>
+      <Paper>
         <Avatar>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form onSubmit={onSubmit} noValidate>
+        <Form onSubmit={onSubmit} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -70,7 +68,7 @@ export default function SignIn({ onSignIn }: any) {
               setLogin(value);
             }}
           />
-          <Button
+          <Submit
             type="submit"
             fullWidth
             variant="contained"
@@ -78,15 +76,15 @@ export default function SignIn({ onSignIn }: any) {
             disabled={isLoading}
           >
             Sign In
-          </Button>
+          </Submit>
           <Grid container>
             <Grid item>
               {/* eslint-disable-next-line prettier/prettier */}
               <Link to="/auth/signup">{'Don\'t have an account? Sign Up'}</Link>
             </Grid>
           </Grid>
-        </form>
-      </div>
+        </Form>
+      </Paper>
       <Box mt={8}>
         <Copyright />
       </Box>
