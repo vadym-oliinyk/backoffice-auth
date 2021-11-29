@@ -5,10 +5,16 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+
 import { Link } from 'react-router-dom';
 
 import { getUser } from '../../services/getUser';
-import { Paper, Avatar, Form, Submit } from './styles';
+
+import classes from './styles.module.scss';
+
+console.log('classes', classes);
 
 function Copyright() {
   return (
@@ -26,7 +32,6 @@ function Copyright() {
 export default function SignIn({ onSignIn }: any) {
   const [login, setLogin] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  // const classes = useStyles();
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -47,14 +52,14 @@ export default function SignIn({ onSignIn }: any) {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Paper>
+      <div className={classes.foo}>
         <Avatar>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <Form onSubmit={onSubmit} noValidate>
+        <form onSubmit={onSubmit} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -68,7 +73,7 @@ export default function SignIn({ onSignIn }: any) {
               setLogin(value);
             }}
           />
-          <Submit
+          <Button
             type="submit"
             fullWidth
             variant="contained"
@@ -76,15 +81,15 @@ export default function SignIn({ onSignIn }: any) {
             disabled={isLoading}
           >
             Sign In
-          </Submit>
+          </Button>
           <Grid container>
             <Grid item>
               {/* eslint-disable-next-line prettier/prettier */}
               <Link to="/auth/signup">{'Don\'t have an account? Sign Up'}</Link>
             </Grid>
           </Grid>
-        </Form>
-      </Paper>
+        </form>
+      </div>
       <Box mt={8}>
         <Copyright />
       </Box>

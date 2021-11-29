@@ -15,7 +15,13 @@
     "resolveJsonModule": true,
     "isolatedModules": false,
     "noEmit": false,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ]
   },
-  "include": ["src", "global.d.ts"]
+  "include": ["**/*.ts", "**/*.tsx", "global.d.ts"],
+  "exclude": ["node_modules"]
 }
