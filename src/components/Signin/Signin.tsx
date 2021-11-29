@@ -14,8 +14,6 @@ import { getUser } from '../../services/getUser';
 
 import classes from './styles.module.scss';
 
-console.log('classes', classes);
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -52,14 +50,14 @@ export default function SignIn({ onSignIn }: any) {
 
   return (
     <Container component="main" maxWidth="xs">
-      <div className={classes.foo}>
-        <Avatar>
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form onSubmit={onSubmit} noValidate>
+        <form onSubmit={onSubmit} noValidate className={classes.form}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -79,6 +77,7 @@ export default function SignIn({ onSignIn }: any) {
             variant="contained"
             color="primary"
             disabled={isLoading}
+            className={classes.btn}
           >
             Sign In
           </Button>
@@ -90,7 +89,7 @@ export default function SignIn({ onSignIn }: any) {
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
+      <Box className={classes.copyright}>
         <Copyright />
       </Box>
     </Container>

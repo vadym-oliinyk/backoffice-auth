@@ -1,28 +1,23 @@
-.foo {
-  background-color: bisque;
+.paper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 32px;
 }
 
-.bar {
-  display: auto;
+.avatar {
+  background-color: '#f6f6f6';
 }
 
-// export const Paper = styled('div')(({ theme }) => ({
-//   marginTop: theme.spacing(8),
-//   display: 'flex',
-//   flexDirection: 'column',
-//   alignItems: 'center',
-// }));
+.form {
+  width: 100%;
+  margin-top: 8px;
+}
 
-// export const Avatar = styled(BaseAvatar)(({ theme }) => ({
-//   margin: theme.spacing(1),
-//   backgroundColor: theme.palette.secondary,
-// }));
+.btn {
+  margin: 12px 0 8px;
+}
 
-// export const Form = styled('form')(({ theme }) => ({
-//   width: '100%',
-//   marginTop: theme.spacing(1),
-// }));
-
-// export const Submit = styled(Button)(({ theme }) => ({
-//   margin: theme.spacing(3, 0, 2),
-// }));
+.copyright {
+  margin-top: 64px;
+}

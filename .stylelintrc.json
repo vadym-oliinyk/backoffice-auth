@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-sass-guidelines",
+    "stylelint-config-idiomatic-order"
+  ],
+  "rules": {
+    "order/properties-alphabetical-order": null,
+    "max-empty-lines": 1,
+    "function-parentheses-newline-inside": "always-multi-line",
+    "function-parentheses-space-inside": "never-single-line",
+    "max-nesting-depth": [2, {
+      "ignore": ["pseudo-classes"]
+    }],
+    "no-descending-specificity": null
+  },
+  "ignoreFiles": ["**/*.ts", "**/*.tsx"]
+}
